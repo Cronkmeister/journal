@@ -1,0 +1,25 @@
+{
+  "name": "journal-client",
+  "version": "1.0.0",
+  "description": "backend server for journal-project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nope index.js",
+    "dev": "npx nodemon index.js",
+    "migrate": "knex migrate:latest",
+    "migrate:down": "knex migrate:down",
+    "migrate:rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
+  },
+  "author": "Jonny Cronk",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "knex": "^1.0.4",
+    "multer": "^1.4.4",
+    "mysql": "^2.18.1"
+  }
+}
