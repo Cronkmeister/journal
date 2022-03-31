@@ -7,7 +7,9 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Route path="/" exact component={WelcomePage} />
+        <Switch>
+          <Route path="/" exact component={WelcomePage} />
+        </Switch>
       </BrowserRouter>
     </>
   );
