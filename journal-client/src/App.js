@@ -1,14 +1,15 @@
 import "./App.scss";
+import { Link, BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
+import WelcomePage from "./pages/WelcomePage/WelcomePage";
 
 function App() {
   return (
-    <div className="App">
-      <NavBar />
-      <header className="App-header">
-        <p>Capstone Project</p>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Route path="/" exact component={WelcomePage} />
+      </BrowserRouter>
+    </>
   );
 }
 
