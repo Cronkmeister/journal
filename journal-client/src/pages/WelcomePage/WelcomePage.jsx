@@ -12,10 +12,7 @@ function WelcomePage(props) {
         <div className="welcome__container-right">
           <Switch>
             <Route path="/" exact component={SiteLogin} />
-            <Route
-              path={`${props.match.path}/login`}
-              component={SiteLoginForm}
-            />
+            <Route path="/login" component={SiteLoginForm} />
           </Switch>
         </div>
       </section>

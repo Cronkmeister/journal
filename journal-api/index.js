@@ -9,7 +9,7 @@ const knex = require("knex")(require("./knexfile").development);
 
 const entryRoutes = require("./routes/entriesRoute");
 
-// app.use("/entries", entryRoutes);
+app.use("/entries", entryRoutes);
 
 // Set Storage Engine
 const storage = multer.diskStorage({
@@ -70,14 +70,17 @@ app.post("/upload", (req, res) => {
         //add database record
         knex("entries")
           .insert({
-            location: "vancouver",
-            category: "watersport",
-            ["text content"]: "this is fun",
+            location: "req.body.location",
+            category: "req.body.category",
+            textContent: "req.body.textContent",
             date: "2022-04-01",
             imageURL: JSON.stringify(req.files),
+            camera: "canon AE-1",
+            film: "Portra 400",
+            filmNotes: "none",
           })
           .then((response) => {
-            console.log(response);
+            // console.log(response);
           })
           .catch((err) => console.log(err));
 
