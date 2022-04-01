@@ -3,6 +3,7 @@
 .navbar {
   background-color: $primary-color-1-black;
   color: $primary-color-2-white;
+  border-bottom: solid 1px $primary-color-2-white;
   &__wrapper {
     @include margin;
   }
