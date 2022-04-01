@@ -1,0 +1,35 @@
+@use "../../styles/global.scss" as *;
+
+.gallery {
+  background-color: $primary-color-1-black;
+  color: $primary-color-2-white;
+  &__wrapper {
+    @include margin;
+  }
+  &__title {
+    @include page-header;
+    @include header-padding;
+  }
+  &__image-container {
+    @include tablet {
+      max-width: 800px;
+      margin: auto;
+    }
+  }
+  &__hero-image {
+    width: 100%;
+  }
+  &__image-info {
+    text-align: right;
+    @include body-copy;
+    @include component-margin-top-bottom;
+    &--date {
+      font-weight: 600;
+    }
+  }
+  &__description {
+    text-align: justify;
+    @include body-copy;
+    @include component-margin-top-bottom;
+  }
+}
