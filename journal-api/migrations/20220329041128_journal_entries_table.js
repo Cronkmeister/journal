@@ -8,7 +8,6 @@ exports.up = function (knex) {
     table.text("imageURL", ["MEDIUMTEXT"]).notNullable();
     table.string("camera");
     table.string("film");
-    table.string("filmNotes");
   });
 };
 

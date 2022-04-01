@@ -2,13 +2,17 @@ const { response } = require("express");
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const cors = require("cors");
 const PORT = process.env.PORT || 5050;
-const app = express();
+
 require("dotenv").config();
 const knex = require("knex")(require("./knexfile").development);
 
 const entryRoutes = require("./routes/entriesRoute");
 
+//middleware
+const app = express();
+app.use(cors());
 app.use("/entries", entryRoutes);
 
 // Set Storage Engine
@@ -77,7 +81,6 @@ app.post("/upload", (req, res) => {
             imageURL: JSON.stringify(req.files),
             camera: "canon AE-1",
             film: "Portra 400",
-            filmNotes: "none",
           })
           .then((response) => {
             // console.log(response);
