@@ -1,0 +1,49 @@
+@use "../../styles/global.scss" as *;
+
+.new {
+  background-color: $primary-color-1-black;
+  color: $primary-color-2-white;
+  &__wrapper {
+    @include margin;
+  }
+  &__form-heading {
+    @include page-header;
+    @include header-padding;
+  }
+  &__form-container {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      flex-direction: row;
+    }
+
+    &--left {
+      display: flex;
+      flex-direction: column;
+      @include body-copy;
+    }
+    &--right {
+      display: flex;
+      flex-direction: column;
+      @include body-copy;
+    }
+  }
+  &__form-file-input {
+    color: $primary-color-2-white;
+  }
+  &__form-label {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  &__form-input {
+    background-color: $primary-color-1-black;
+    color: $primary-color-2-white;
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px $primary-color-2-white;
+    padding: 0.5rem 0 0.2rem 0;
+    &:focus {
+      outline: none;
+    }
+  }
+}

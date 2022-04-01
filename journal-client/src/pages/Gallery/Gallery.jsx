@@ -5,9 +5,7 @@ function Gallery() {
   return (
     <>
       <section className="gallery">
-        <div className="gallery__wrapper">
-          <FullView />
-        </div>
+        <div className="gallery__wrapper">{/* <FullView /> */}</div>
       </section>
     </>
   );

@@ -8,10 +8,10 @@ function NavBar() {
           <div className="navbar__container">
             <h2 className="navbar__logo">Jounrnal</h2>
             <ul className="navbar__links">
-              <li className="navbar__link-item">Gallery</li>
-              <li className="navbar__link-item">Explore</li>
-              <li className="navbar__link-item">Collections</li>
-              <li className="navbar__link-item">Map</li>
+              <li className="navbar__link-item">gallery</li>
+              <li className="navbar__link-item">+ add new</li>
+              <li className="navbar__link-item">collections</li>
+              <li className="navbar__link-item">map</li>
             </ul>
           </div>
         </div>

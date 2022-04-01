@@ -3,6 +3,7 @@ import { Link, BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import Gallery from "./pages/Gallery/Gallery";
+import AddNew from "./pages/AddNew/AddNew";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
           <Route path="/" component={WelcomePage} />
         </Switch> */}
         <NavBar />
-        <Gallery />
+        {/* <Gallery /> */}
+        <AddNew />
       </BrowserRouter>
     </>
   );
