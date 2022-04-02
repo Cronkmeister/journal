@@ -13,8 +13,8 @@ function App() {
           <Route path="/" component={WelcomePage} />
         </Switch> */}
         <NavBar />
-        {/* <Gallery /> */}
-        <AddNew />
+        <Gallery />
+        {/* <AddNew /> */}
       </BrowserRouter>
     </>
   );
