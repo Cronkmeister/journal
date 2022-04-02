@@ -93,6 +93,23 @@
     max-width: 1020px;
   }
 }
+@mixin component-gutter {
+  margin-left: $mobile-margin;
+  margin-right: $mobile-margin;
+  @include tablet {
+    margin-left: $tablet-margin;
+    margin-right: $tablet-margin;
+  }
+}
+@mixin component-gutter-small {
+  margin-left: $mobile-margin/2;
+  margin-right: $mobile-margin/2;
+  @include tablet {
+    margin-left: $tablet-margin/2;
+    margin-right: $tablet-margin/2;
+  }
+}
+
 @mixin header-padding {
   padding-top: $mobile-header-padding-top;
   padding-bottom: $mobile-padding;

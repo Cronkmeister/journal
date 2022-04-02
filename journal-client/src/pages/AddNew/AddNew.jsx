@@ -70,68 +70,69 @@ class AddNew extends Component {
       <>
         <section className="new">
           <div className="new__wrapper">
-            <h2 className="new__form-heading">new entry</h2>
-            <form
-              className="new__form-container"
-              onSubmit={(e) => this.handleUpload(e)}
-            >
-              <div className="new__form-container--left">
-                <label>Upload</label>
-                <input
-                  className="new__form-file-input"
-                  name="galleryImage"
-                  type="file"
-                  onChange={(e) => this.handleFile(e)}
-                  multiple
-                />
-                <label className="new__form-label">Date</label>
-                <input
-                  className="new__form-input"
-                  onChange={this.handleChange}
-                  value={this.state.date}
-                  name="date"
-                ></input>
-                <label className="new__form-label">Location</label>
-                <input
-                  className="new__form-input"
-                  onChange={this.handleChange}
-                  value={this.state.location}
-                  name="location"
-                ></input>
-                <label className="new__form-label">Category</label>
-                <input
-                  className="new__form-input"
-                  onChange={this.handleChange}
-                  value={this.state.category}
-                  name="category"
-                ></input>
+            <form className="new__form" onSubmit={(e) => this.handleUpload(e)}>
+              <h2 className="new__form-heading">new entry</h2>
+              <div className="new__form-container">
+                <div className="new__form-container--left">
+                  <label>Upload</label>
+                  <input
+                    className="new__form-file-input"
+                    name="galleryImage"
+                    type="file"
+                    onChange={(e) => this.handleFile(e)}
+                    multiple
+                  />
+                  <label className="new__form-label">Date</label>
+                  <input
+                    className="new__form-input"
+                    onChange={this.handleChange}
+                    value={this.state.date}
+                    name="date"
+                  ></input>
+                  <label className="new__form-label">Location</label>
+                  <input
+                    className="new__form-input"
+                    onChange={this.handleChange}
+                    value={this.state.location}
+                    name="location"
+                  ></input>
+                  <label className="new__form-label">Category</label>
+                  <input
+                    className="new__form-input"
+                    onChange={this.handleChange}
+                    value={this.state.category}
+                    name="category"
+                  ></input>
+                </div>
+                <div className="new__form-container--right">
+                  <label className="new__form-label">Camera</label>
+                  <input
+                    className="new__form-input"
+                    onChange={this.handleChange}
+                    value={this.state.camera}
+                    name="camera"
+                  ></input>
+                  <label className="new__form-label">Film</label>
+                  <input
+                    className="new__form-input"
+                    onChange={this.handleChange}
+                    value={this.state.film}
+                    name="film"
+                  ></input>
+                  <label className="new__form-label">Notes</label>
+                  <textarea
+                    className="new__form-textarea"
+                    onChange={this.handleChange}
+                    value={this.state.notes}
+                    name="notes"
+                  ></textarea>
+                </div>
               </div>
-              <div className="new__form-container--right">
-                <label className="new__form-label">Camera</label>
-                <input
-                  className="new__form-input"
-                  onChange={this.handleChange}
-                  value={this.state.camera}
-                  name="camera"
-                ></input>
-                <label className="new__form-label">Film</label>
-                <input
-                  className="new__form-input"
-                  onChange={this.handleChange}
-                  value={this.state.film}
-                  name="film"
-                ></input>
-                <label className="new__form-label">Notes</label>
-                <textarea
-                  className="new__form-textarea"
-                  onChange={this.handleChange}
-                  value={this.state.notes}
-                  name="notes"
-                ></textarea>
+              <div className="new__form-submit--container">
+                <button className="new__form-submit" type="submit">
+                  submit
+                </button>
               </div>
-              <button className="new__form-submit" type="submit">
-                submit
-              </button>
             </form>
           </div>
         </section>
