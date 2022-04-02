@@ -13,6 +13,7 @@ const entryRoutes = require("./routes/entriesRoute");
 //middleware
 const app = express();
 app.use(cors());
+app.use(express.json());
 app.use("/entries", entryRoutes);
 
 // Set Storage Engine

@@ -5,7 +5,7 @@ exports.up = function (knex) {
     table.string("category").notNullable();
     table.text("textContent", ["TEXT"]).notNullable();
     table.date("date").notNullable();
-    table.text("imageURL", ["MEDIUMTEXT"]).notNullable();
+    table.text("imageURL", ["MEDIUMTEXT"]);
     table.string("camera");
     table.string("film");
   });

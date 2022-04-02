@@ -2,9 +2,12 @@ import "./AddNew.scss";
 import React, { Component } from "react";
 import axios from "axios";
 
+const PORT = "5050";
+const apiURL = `http://localhost:${PORT}`;
+
 class AddNew extends Component {
   state = {
-    selectedFiles: [],
+    file: null,
     date: "",
     location: "",
     category: "",
@@ -16,16 +19,22 @@ class AddNew extends Component {
   componentDidMount() {
     document.title = "new entry";
   }
-  //set state once the files have been selected
-  onPhotoUpload = (event) => {
-    console.log(event);
-    // this.setState({ selectedFiles: event.target.files[0] });
-    this.setState({
-      selectedFiles: event.target.files[0],
-    });
-  };
+  //   //set state once the files have been selected
+
+  handleFile(e) {
+    let file = e.target.files[0];
+    this.setState({ file });
+  }
+  async handleUpload(e) {
+    e.preventDefault();
+    console.log(this.state.file);
+    await uploadImage(this.state.file);
+  }
 
   //send new entry to database once it is created
+  /*
+  NOT DOING ANYTHING RIGHT NOW
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -36,9 +45,18 @@ class AddNew extends Component {
       category: this.state.category,
       camera: this.state.camera,
       film: this.state.film,
-      notes: this.state.notes,
+      textContent: this.state.notes,
     };
     console.log(newEntry);
+
+    axios
+      .post(apiURL + "/entries", newEntry)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   handleChange = (e) => {
@@ -46,21 +64,24 @@ class AddNew extends Component {
       [e.target.name]: e.target.value,
     });
   };
-
+*/
   render() {
     return (
       <>
         <section className="new">
           <div className="new__wrapper">
             <h2 className="new__form-heading">new entry</h2>
-            <form className="new__form-container" onSubmit={this.handleSubmit}>
+            <form
+              className="new__form-container"
+              onSubmit={(e) => this.handleUpload(e)}
+            >
               <div className="new__form-container--left">
                 <label>Upload</label>
                 <input
                   className="new__form-file-input"
                   name="galleryImage"
                   type="file"
-                  onChange={this.onPhotoUpload}
+                  onChange={(e) => this.handleFile(e)}
                   multiple
                 />
                 <label className="new__form-label">Date</label>
@@ -120,3 +141,35 @@ class AddNew extends Component {
 }
 
 export default AddNew;
+
+const uploadImage = async (file) => {
+  try {
+    console.log("Upload Image", file);
+    const formData = new FormData();
+    formData.append("filename", file);
+    formData.append("destination", "images");
+    formData.append("create_thumbnail", true);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+
+    const HOST = "http://localhost:";
+    const url = `${HOST}/${PORT}`;
+
+    const result = await axios.post(url, formData, config);
+    console.log("REsult: ", result);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//// OLD CODE /////
+//   onPhotoUpload = (event) => {
+//     console.log(event);
+//     // this.setState({ selectedFiles: event.target.files[0] });
+//     this.setState({
+//       selectedFiles: event.target.files[0],
+//     });
+//   };

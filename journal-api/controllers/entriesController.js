@@ -9,6 +9,7 @@ exports.index = (_req, res) => {
     .catch((err) => res.status(400).send(`Error retrieving Entries ${err}`));
 };
 
+//GET single entry
 exports.singleEntry = (req, res) => {
   knex("entries")
     .where({ id: req.params.id })
@@ -24,8 +25,19 @@ exports.singleEntry = (req, res) => {
       res.status(400).send(`Error retrieving entries ${req.params.id} ${err}`)
     );
 };
-
+//POST single entry
 exports.addEntry = (req, res) => {
+  // const { date, location, category, camera, film, notes } = req.body;
+  console.log(req.body, "where is the body");
+
+  const newEntry = {
+    date: req.body.date,
+    location: req.body.location,
+    category: req.body.category,
+    camera: req.body.camera,
+    film: req.body.film,
+    textContent: req.body.textContent,
+  };
   if (
     !req.body.location ||
     !req.body.category ||
@@ -37,7 +49,7 @@ exports.addEntry = (req, res) => {
       .send("Please make sure to provide all the required fields");
   }
   knex("entries")
-    .insert(req.body)
+    .insert(newEntry)
     .then((data) => {
       const newEntryURL = `/entries/${data[0]}`;
       res.status(201).location(newEntryURL).send(newEntryURL);
@@ -45,6 +57,7 @@ exports.addEntry = (req, res) => {
     .catch((err) => res.status(400).send(`Error creating entry: ${err}`));
 };
 
+//PUT single entry
 exports.updateEntry = (req, res) => {
   knex("entries")
     .update(req.body)
@@ -58,6 +71,7 @@ exports.updateEntry = (req, res) => {
     );
 };
 
+//DELETE single entry
 exports.deleEntry = (req, res) => {
   knex("entries")
     .delete()
