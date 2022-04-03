@@ -18,18 +18,48 @@ function AlbumView() {
         <div className="albums__wrapper">
           <h1 className="albums__sort">2021</h1>
 
-          <div class="albums-content">
-            <div class="albums-content__container">
-              <img class="image" src={album01}></img>
-              <img class="image col-row-span-2" src={album02}></img>
-              <img class="image" src={album04}></img>
-              <img class="image col-row-span-2" src={album05}></img>
-              <img class="image" src={album06}></img>
-              <img class="image" src={album07}></img>
-              <img class="image" src={album08}></img>
-              <img class="image col-row-span-2" src={album09}></img>
-              <img class="image" src={album10}></img>
-              <img class="image col-row-span-2" src={album11}></img>
+          <div className="albums-content">
+            <div className="albums-content__container">
+              <div className="box zoom-in">
+                <img className="image" src={album01}></img>
+                <p>Vancouver</p>
+              </div>
+              <div className="box zoom-in col-row-span-2">
+                <img className="image " src={album02}></img>
+                <p>Vancouver</p>
+              </div>
+              <div className="box zoom-in">
+                <img className="image" src={album04}></img>
+                <p>Vancouver</p>
+              </div>
+              <div className="box zoom-in col-row-span-2">
+                <img className="image " src={album05}></img>
+                <p>Hornby Island</p>
+              </div>
+              <div className="box zoom-in">
+                <img className="image" src={album06}></img>
+                <p>Lovely Water</p>
+              </div>
+              <div className="box zoom-in">
+                <img className="image" src={album07}></img>
+                <p>Vancouver</p>
+              </div>
+              <div className="box zoom-in">
+                <img className="image" src={album08}></img>
+                <p>Garibaldi</p>
+              </div>
+              <div className="box zoom-in col-row-span-2">
+                <img className="image " src={album09}></img>
+                <p>Vancouver</p>
+              </div>
+              <div className="box zoom-in">
+                <img className="image" src={album10}></img>
+                <p>Vancouver</p>
+              </div>
+              <div className="box zoom-in col-row-span-2">
+                <img className="image " src={album11}></img>
+                <p>Whistler</p>
+              </div>
             </div>
           </div>
         </div>
