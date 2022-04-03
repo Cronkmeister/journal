@@ -1,0 +1,44 @@
+@use "../../styles/global.scss" as *;
+
+.albums {
+  //   height: 100%;
+  &__sort {
+    @include page-header;
+    @include header-padding;
+  }
+  &__location {
+    @include subheader;
+    @include component-margin-top-bottom;
+  }
+}
+
+.albums-content {
+  &__container {
+    // @include display-flex(column, center, center);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, 100px);
+    gap: 0.5rem;
+    @include tablet {
+      grid-auto-rows: minmax(100px, 200px);
+      gap: 1rem;
+    }
+  }
+}
+
+.image {
+  //   border: solid 1px $primary-color-3;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.col-span-2 {
+  margin-bottom: $mobile-margin;
+  grid-column: span 2;
+}
+
+.col-row-span-2 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
