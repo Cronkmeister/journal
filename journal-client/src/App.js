@@ -2,7 +2,7 @@ import "./App.scss";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
-import MainPage from "./pages/MainPage/MainPage";
+import Gallery from "./pages/Gallery/Gallery";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={WelcomePage} />
-          <Route path="/gallery" component={MainPage} />
+          <Route path="/gallery" component={Gallery} />
         </Switch>
       </BrowserRouter>
     </>

@@ -17,6 +17,12 @@
     @include subheader;
     @include component-margin-top-bottom;
   }
+  &__logo-container {
+    position: relative;
+  }
+  &__logo-image {
+    color: $primary-color-2-white;
+  }
   &__links {
     @include display-flex(row, center, space-between);
     @include labels-buttons;

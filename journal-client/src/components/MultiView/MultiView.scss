@@ -2,6 +2,7 @@
 
 .multiView {
   height: 100%;
+  @include margin;
   &__title {
     @include page-header;
     @include header-padding;
