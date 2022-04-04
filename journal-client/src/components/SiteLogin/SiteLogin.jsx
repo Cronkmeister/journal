@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function SiteLogin() {
   return (
     <>
@@ -5,8 +7,12 @@ function SiteLogin() {
         <h2 className="welcome__title">
           Welcome to <br></br>Journal
         </h2>
-        <button className="welcome__button">Enter</button>
-        <button className="welcome__button">Log in</button>
+        <Link to="/gallery" className="welcome__button">
+          Enter
+        </Link>
+        <Link to="/login" className="welcome__button">
+          Log in
+        </Link>
       </div>
     </>
   );

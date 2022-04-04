@@ -1,5 +1,6 @@
 import "./NarBar.scss";
 import logo from "../../assests/logo/logo1.svg";
+import { Link, NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -12,9 +13,28 @@ function NavBar() {
               {/* <img className="navbar__logo-image" src={logo}></img> */}
             </div>
             <ul className="navbar__links">
-              <li className="navbar__link-item">gallery</li>
-              <li className="navbar__link-item">map</li>
-              <li className="navbar__link-item">+ add new</li>
+              <NavLink
+                exact
+                to="/gallery"
+                className="navbar__link-item"
+                activeClassName="navbar__link-item--selected"
+              >
+                gallery
+              </NavLink>
+              <NavLink
+                to="/gallery/map"
+                className="navbar__link-item"
+                activeClassName="navbar__link-item--selected"
+              >
+                map
+              </NavLink>
+              <NavLink
+                to="/gallery/new"
+                className="navbar__link-item"
+                activeClassName="navbar__link-item--selected"
+              >
+                + add new
+              </NavLink>
             </ul>
           </div>
         </div>

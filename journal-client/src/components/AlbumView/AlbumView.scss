@@ -2,6 +2,9 @@
 
 .albums {
   //   height: 100%;
+  &__wrapper {
+    @include margin;
+  }
   &__sort {
     @include page-header;
     @include header-padding;
