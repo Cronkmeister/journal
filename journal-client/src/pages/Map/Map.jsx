@@ -91,6 +91,22 @@ function Map() {
             }}
           />
         ))}
+        {selectedEntry && (
+          <InfoWindow
+            onCloseClick={() => {
+              setSelectedEntry(null);
+            }}
+            position={{
+              lat: selectedEntry.geometry.coordinates[1],
+              lng: selectedEntry.geometry.coordinates[0],
+            }}
+          >
+            <div>
+              <h2>{selectedEntry.properties.LOCATION}</h2>
+              <p>{selectedEntry.properties.DATE}</p>
+            </div>
+          </InfoWindow>
+        )}
       </GoogleMap>
     </>
   );
