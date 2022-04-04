@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import Gallery from "./pages/Gallery/Gallery";
 import AddNew from "./pages/AddNew/AddNew";
+import Map from "./pages/Map/Map";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
           <Route path="/" component={WelcomePage} />
         </Switch> */}
         <NavBar />
-        <Gallery />
+        {/* <Gallery /> */}
         {/* <AddNew /> */}
+        <Map />
       </BrowserRouter>
     </>
   );

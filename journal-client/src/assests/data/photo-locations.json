@@ -1,0 +1,44 @@
+{
+  "type": "PhotoCollection",
+  "entries": [
+    {
+      "category": "Hike",
+      "properties": {
+        "ENTRY_ID": 1,
+        "DATE": "2021-08-14",
+        "LOCATION": "Lake Lovely Water",
+        "PICTURE__1": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [49.784764, -123.250995]
+      }
+    },
+    {
+      "category": "Hike",
+      "properties": {
+        "ENTRY_ID": 2,
+        "DATE": "2019-11-16",
+        "LOCATION": "Seymour Mountain",
+        "PICTURE__1": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [49.387265, -122.940852]
+      }
+    },
+    {
+      "category": "Camping",
+      "properties": {
+        "ENTRY_ID": 3,
+        "DATE": "2021-06-12",
+        "LOCATION": "Hornby Island",
+        "PICTURE__1": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [49.521883, -124.64537]
+      }
+    }
+  ]
+}

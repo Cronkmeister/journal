@@ -8,8 +8,8 @@ function Gallery() {
     <>
       <section className="gallery">
         <div className="gallery__wrapper">
-          <AlbumView />
-          {/* <FullView /> */}
+          {/* <AlbumView /> */}
+          <FullView />
           {/* <MultiView /> */}
         </div>
       </section>
