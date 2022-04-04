@@ -24,6 +24,7 @@
   &__button-box {
     @include display-flex(column, center, center);
   }
+
   &__button {
     @include CTA-button;
     @include component-margin-top-bottom-flex;

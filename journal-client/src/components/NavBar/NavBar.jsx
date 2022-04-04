@@ -1,5 +1,5 @@
 import "./NarBar.scss";
-import logo from "../../assests/logo/logo1.svg";
+import logo from "../../assests/logo/logo.png";
 import { Link, NavLink } from "react-router-dom";
 
 function NavBar() {
@@ -10,7 +10,7 @@ function NavBar() {
           <div className="navbar__container">
             <div className="navbar__logo-container">
               <h2 className="navbar__logo">Journal</h2>
-              {/* <img className="navbar__logo-image" src={logo}></img> */}
+              <img className="navbar__logo-image" src={logo}></img>
             </div>
             <ul className="navbar__links">
               <NavLink
