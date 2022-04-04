@@ -1,16 +1,19 @@
 import "./Gallery.scss";
 import AlbumView from "../../components/AlbumView/AlbumView";
-import FullView from "../../components/FullView/FullView";
 import MultiView from "../../components/MultiView/MultiView";
+import FullView from "../../components/FullView/FullView";
+import { Route, Switch } from "react-router-dom";
 
-function Gallery() {
+function Gallery(props) {
   return (
     <>
       <section className="gallery">
         <div className="gallery__wrapper">
-          {/* <AlbumView /> */}
-          <FullView />
-          {/* <MultiView /> */}
+          <Switch>
+            <Route path={`${props.match.path}`} exact component={AlbumView} />
+            <Route path={`${props.match.path}/multi`} component={MultiView} />
+            <Route path={`${props.match.path}/single`} component={FullView} />
+          </Switch>
         </div>
       </section>
     </>

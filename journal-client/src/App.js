@@ -1,22 +1,17 @@
 import "./App.scss";
-import { Link, BrowserRouter, Switch, Route } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
-import Gallery from "./pages/Gallery/Gallery";
-import AddNew from "./pages/AddNew/AddNew";
-import Map from "./pages/Map/Map";
+import MainPage from "./pages/MainPage/MainPage";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        {/* <Switch>
-          <Route path="/" component={WelcomePage} />
-        </Switch> */}
-        <NavBar />
-        {/* <Gallery /> */}
-        {/* <AddNew /> */}
-        <Map />
+        <Switch>
+          <Route path="/" exact component={WelcomePage} />
+          <Route path="/gallery" component={MainPage} />
+        </Switch>
       </BrowserRouter>
     </>
   );

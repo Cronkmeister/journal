@@ -1,4 +1,4 @@
-import "./Map.scss";
+import "./PhotoMap.scss";
 import React, { useState, useEffect } from "react";
 import {
   GoogleMap,
@@ -30,7 +30,7 @@ const options = {
 
 const mapId = "51250d1ff6cc5f6c";
 
-function Map() {
+function PhotoMap() {
   console.log(photoData.entries);
   //load google map api with id and API key
   console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
@@ -74,7 +74,7 @@ function Map() {
         options={options}
       >
         {/* Child components, such as markers, info windows, etc. */}
-        <Marker position={[49.784764, -123.250995]} />
+        {/* <Marker position={[49.784764, -123.250995]} /> */}
         {photoData.entries.map((entry) => (
           <Marker
             key={entry.properties.ENTRY_ID}
@@ -112,7 +112,7 @@ function Map() {
   );
 }
 
-export default Map;
+export default PhotoMap;
 
 // return (
 //     <>
