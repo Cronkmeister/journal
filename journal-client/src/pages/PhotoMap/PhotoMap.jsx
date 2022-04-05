@@ -7,7 +7,8 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import mapStyles from "../../styles/mapStyles";
-import photoData from "../../assests/data/photo-locations.json";
+import photoData from "../../assests/data/photoLocations.json";
+import pin from "../../assests/icons/pin.png";
 
 //map container styles
 const containerStyle = {
@@ -31,9 +32,9 @@ const options = {
 const mapId = "51250d1ff6cc5f6c";
 
 function PhotoMap() {
-  console.log(photoData.entries);
+  // console.log(photoData.entries);
   //load google map api with id and API key
-  console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+  // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     mapId: "51250d1ff6cc5f6c",
@@ -74,7 +75,6 @@ function PhotoMap() {
         options={options}
       >
         {/* Child components, such as markers, info windows, etc. */}
-        <Marker position={{ lat: 49.784764, lng: -123.250995 }} />
         {photoData.entries.map((entry) => (
           <Marker
             key={entry.properties.ENTRY_ID}
@@ -85,8 +85,9 @@ function PhotoMap() {
             onClick={() => {
               setSelectedEntry(entry);
             }}
+            animation={2}
             icon={{
-              url: "../../assests/icons/pin.png",
+              url: pin,
               scaledSize: new window.google.maps.Size(25, 25),
             }}
           />
@@ -113,30 +114,3 @@ function PhotoMap() {
 }
 
 export default PhotoMap;
-
-// return (
-//     <>
-//       <section className="map">
-//         <div className="map__wrapper">
-//           <h1 className="map__heading">World Map</h1>
-//         </div>
-//       </section>
-//     </>
-//   );
-
-//   const [map, setMap] = React.useState(null);
-
-//   const onLoad = React.useCallback(function callback(map) {
-//     const bounds = new window.google.maps.LatLngBounds();
-//     map.fitBounds(bounds);
-//     setMap(map);
-//   }, []);
-
-//   const onUnmount = React.useCallback(function callback(map) {
-//     setMap(null);
-//   }, []);
-
-//   const panTo = React.useCallback(({ lat, lng }) => {
-//     mapRef.current.panTo({ lat, lng });
-//     mapRef.current.setZoom(14);
-//   }, []);

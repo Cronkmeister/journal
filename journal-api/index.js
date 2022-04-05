@@ -58,7 +58,7 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => res.render("index"));
 
 //Public Folder
-app.use(express.static("./public"));
+app.use(express.static("public"));
 
 app.post("/upload", (req, res) => {
   upload(req, res, (err) => {
