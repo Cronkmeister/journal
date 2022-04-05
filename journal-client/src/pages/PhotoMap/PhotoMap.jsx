@@ -74,13 +74,13 @@ function PhotoMap() {
         options={options}
       >
         {/* Child components, such as markers, info windows, etc. */}
-        {/* <Marker position={[49.784764, -123.250995]} /> */}
+        <Marker position={{ lat: 49.784764, lng: -123.250995 }} />
         {photoData.entries.map((entry) => (
           <Marker
             key={entry.properties.ENTRY_ID}
             position={{
-              lat: entry.geometry.coordinates[1],
-              lng: entry.geometry.coordinates[0],
+              lat: entry.geometry.coordinates[0],
+              lng: entry.geometry.coordinates[1],
             }}
             onClick={() => {
               setSelectedEntry(entry);
@@ -97,8 +97,8 @@ function PhotoMap() {
               setSelectedEntry(null);
             }}
             position={{
-              lat: selectedEntry.geometry.coordinates[1],
-              lng: selectedEntry.geometry.coordinates[0],
+              lat: selectedEntry.geometry.coordinates[0],
+              lng: selectedEntry.geometry.coordinates[1],
             }}
           >
             <div>

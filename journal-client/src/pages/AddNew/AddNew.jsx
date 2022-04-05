@@ -1,6 +1,7 @@
 import "./AddNew.scss";
 import React, { Component } from "react";
 import axios from "axios";
+import FormData from "form-data";
 
 const PORT = "5050";
 const apiURL = `http://localhost:${PORT}`;
@@ -19,27 +20,16 @@ class AddNew extends Component {
   componentDidMount() {
     document.title = "new entry";
   }
-  //   //set state once the files have been selected
 
+  //handle the files uploaded
   handleFile(e) {
     let file = e.target.files[0];
     this.setState({ file });
   }
   async handleUpload(e) {
     e.preventDefault();
-    console.log(this.state.file);
-    await uploadImage(this.state.file);
-  }
 
-  //send new entry to database once it is created
-  /*
-  NOT DOING ANYTHING RIGHT NOW
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newEntry = {
-      selectedFiles: this.state.selectedFiles,
+    let newEntry = {
       date: this.state.date,
       location: this.state.location,
       category: this.state.category,
@@ -47,24 +37,18 @@ class AddNew extends Component {
       film: this.state.film,
       textContent: this.state.notes,
     };
-    console.log(newEntry);
+    // console.log(newEntry);
+    // console.log(this.state.file);
+    await uploadImage(this.state.file, newEntry);
+  }
 
-    axios
-      .post(apiURL + "/entries", newEntry)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+  //set state for other info inputs
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
-*/
+
   render() {
     return (
       <>
@@ -147,8 +131,8 @@ const uploadImage = async (file) => {
   try {
     console.log("Upload Image", file);
     const formData = new FormData();
-    formData.append("filename", file);
-    formData.append("destination", "images");
+    formData.append("galleryImage", file);
+    formData.append("destination", "uploads");
     formData.append("create_thumbnail", true);
     const config = {
       headers: {
@@ -157,10 +141,10 @@ const uploadImage = async (file) => {
     };
 
     const HOST = "http://localhost:";
-    const url = `${HOST}/${PORT}`;
+    const url = `${HOST}${PORT}/upload`;
 
     const result = await axios.post(url, formData, config);
-    console.log("REsult: ", result);
+    console.log("Result: ", result);
   } catch (error) {
     console.error(error);
   }
@@ -174,3 +158,34 @@ const uploadImage = async (file) => {
 //       selectedFiles: event.target.files[0],
 //     });
 //   };
+
+//send new entry to database once it is created
+/*
+  NOT DOING ANYTHING RIGHT NOW
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newEntry = {
+      selectedFiles: this.state.selectedFiles,
+      date: this.state.date,
+      location: this.state.location,
+      category: this.state.category,
+      camera: this.state.camera,
+      film: this.state.film,
+      textContent: this.state.notes,
+    };
+    console.log(newEntry);
+
+    axios
+      .post(apiURL + "/entries", newEntry)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+ 
+*/

@@ -70,7 +70,8 @@ app.post("/upload", (req, res) => {
       if (req.files == undefined) {
         res.send("error:no file selected");
       } else {
-        console.log(req.files);
+        console.log("files:", req.files);
+        // console.log("the body:", req.body);
 
         //add database record
         knex("entries")
@@ -79,7 +80,8 @@ app.post("/upload", (req, res) => {
             category: "req.body.category",
             textContent: "req.body.textContent",
             date: "2022-04-01",
-            imageURL: JSON.stringify(req.files),
+            // imageURL: JSON.stringify(req.files),
+            imageURL: JSON.stringify(req.files.path),
             camera: "canon AE-1",
             film: "Portra 400",
           })

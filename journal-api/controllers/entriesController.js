@@ -31,6 +31,7 @@ exports.addEntry = (req, res) => {
   console.log(req.body, "where is the body");
 
   const newEntry = {
+    // imageURL: JSON.stringify(req.body.file),
     date: req.body.date,
     location: req.body.location,
     category: req.body.category,
@@ -59,8 +60,18 @@ exports.addEntry = (req, res) => {
 
 //PUT single entry
 exports.updateEntry = (req, res) => {
+  const selectedEntry = {
+    location: req.body.location,
+    category: req.body.category,
+    textContent: req.body.textContent,
+    imageURL: req.body.imageURL,
+    date: req.body.date,
+    camera: req.body.camera,
+    film: req.body.film,
+  };
+
   knex("entries")
-    .update(req.body)
+    .update(selectedEntry)
     .where({ id: req.params.id })
     .then(() => {
       res.status(200);
