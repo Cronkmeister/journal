@@ -1,7 +1,7 @@
 @use "../../styles/global.scss" as *;
 
 .albums {
-  height: 100vh;
+  height: 100%;
   &__wrapper {
     @include margin;
   }
@@ -16,7 +16,7 @@
 }
 
 .albums-content {
-  margin-bottom: 4rem;
+  padding-bottom: 2rem;
   &__container {
     // @include display-flex(column, center, center);
 

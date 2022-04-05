@@ -64,7 +64,6 @@ exports.updateEntry = (req, res) => {
     location: req.body.location,
     category: req.body.category,
     textContent: req.body.textContent,
-    imageURL: req.body.imageURL,
     date: req.body.date,
     camera: req.body.camera,
     film: req.body.film,
