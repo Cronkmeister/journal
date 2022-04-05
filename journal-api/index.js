@@ -76,12 +76,13 @@ app.post("/upload", (req, res) => {
         //add database record
         knex("entries")
           .insert({
-            location: "req.body.location",
-            category: "req.body.category",
-            textContent: "req.body.textContent",
+            location: "Seymour",
+            category: "Mountains",
+            textContent:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in feugiat dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec ultricies accumsan rutrum. Aliquam ex lorem, euismod quis nunc non, varius bibendum metus. Mauris semper, metus nec faucibus vehicula, purus magna accumsan elit, nec tempus dolor massa ac erat. ",
             date: "2022-04-01",
             // imageURL: JSON.stringify(req.files),
-            imageURL: JSON.stringify(req.files.path),
+            imageURL: JSON.stringify(req.files),
             camera: "canon AE-1",
             film: "Portra 400",
           })
