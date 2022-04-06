@@ -15,6 +15,7 @@ class AddNew extends Component {
     camera: "",
     film: "",
     notes: "",
+    imageURL: "",
   };
 
   componentDidMount() {

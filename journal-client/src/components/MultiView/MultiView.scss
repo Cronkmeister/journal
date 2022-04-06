@@ -11,6 +11,30 @@
     @include subheader;
     @include component-margin-top-bottom;
   }
+  &__container {
+    @include display-flex(row, center, space-between);
+  }
+}
+.view-button {
+  color: $primary-color-2-white;
+  border: solid 1px $primary-color-1-black;
+  margin-left: 0.8rem;
+  font-size: 1rem;
+  padding: 4px;
+  border-radius: 50%;
+  transition: ease-in 0.15s;
+  @include tablet {
+    font-size: 1.2rem;
+    padding: 6px;
+  }
+  &:hover {
+    border: solid 1px $primary-color-2-white;
+    cursor: pointer;
+  }
+}
+.button-active {
+  background-color: black;
+  border: solid 1px $primary-color-2-white;
 }
 
 .main-content {
@@ -30,7 +54,7 @@
   //   border: solid 1px white;
 
   max-width: 100%;
-  max-height: 80vh;
+  // max-height: 80vh;
 }
 
 .col-span-2 {

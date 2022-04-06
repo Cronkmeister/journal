@@ -15,8 +15,8 @@ function Gallery(props) {
         {/* <div className="gallery__wrapper"> */}
         <Switch>
           <Route path={`${props.match.path}`} exact component={AlbumView} />
-          <Route path={`${props.match.path}/multi/:id`} component={MultiView} />
-          <Route path={`${props.match.path}/full`} component={FullView} />
+          <Route path={`/gallery/multi/:id`} component={MultiView} />
+          <Route path={`/gallery/full/:id`} component={FullView} />
           <Route path={`${props.match.path}/map`} component={PhotoMap} />
           <Route path={`${props.match.path}/new`} component={AddNew} />
         </Switch>
