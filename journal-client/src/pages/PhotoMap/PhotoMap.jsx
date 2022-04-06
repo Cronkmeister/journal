@@ -102,9 +102,12 @@ function PhotoMap() {
               lng: selectedEntry.geometry.coordinates[1],
             }}
           >
-            <div>
-              <h2>{selectedEntry.properties.LOCATION}</h2>
-              <p>{selectedEntry.properties.DATE}</p>
+            <div className="info-box">
+              <h2 className="info-box__location">
+                {selectedEntry.properties.LOCATION}
+              </h2>
+              <p className="info-box__date">{selectedEntry.properties.DATE}</p>
+              <p className="info-box__date">{selectedEntry.category}</p>
             </div>
           </InfoWindow>
         )}

@@ -3,6 +3,7 @@
 .gallery {
   background-color: $primary-color-1-black;
   color: $primary-color-2-white;
+  min-height: 100vh;
   &__wrapper {
     @include margin;
   }

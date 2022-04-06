@@ -8,14 +8,13 @@ import { MdOutlineGridView } from "react-icons/md";
 const serverURL = `http://localhost:5050`;
 
 class MultiView extends Component {
-  constructor(props) {
-    // console.log(props);
-    super(props);
-    this.state = {
-      selectedAlbumDetail: [],
-      selectedPhotos: [],
-    };
-  }
+  // constructor(props) {
+  // console.log(props);
+  // super(props);
+  state = {
+    selectedAlbumDetail: [],
+    selectedPhotos: [],
+  };
 
   componentDidMount() {
     document.title = "gallery image view:multi";
@@ -54,7 +53,7 @@ class MultiView extends Component {
             </h2>
             <div className="multiView__container--buttons">
               <MdOutlineGridView className="view-button button-active" />
-              <Link to={`gallery/full/${this.state.selectedAlbumDetail.id}`}>
+              <Link to={`/gallery/full/${this.state.selectedAlbumDetail.id}`}>
                 <RiFullscreenLine className="view-button" />
               </Link>
             </div>

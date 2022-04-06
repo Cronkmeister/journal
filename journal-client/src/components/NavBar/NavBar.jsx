@@ -10,7 +10,9 @@ function NavBar() {
           <div className="navbar__container">
             <div className="navbar__logo-container">
               <h2 className="navbar__logo">Journal</h2>
-              <img className="navbar__logo-image" src={logo}></img>
+              <Link to="/">
+                <img className="navbar__logo-image" src={logo}></img>
+              </Link>
             </div>
             <ul className="navbar__links">
               <NavLink
