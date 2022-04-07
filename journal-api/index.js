@@ -70,14 +70,15 @@ app.post("/upload", (req, res) => {
       if (req.files == undefined) {
         res.send("error:no file selected");
       } else {
+        console.log(req);
         console.log("files:", req.files);
-        // console.log("the body:", req.body);
+        console.log("the body:", req.body);
 
         //add database record
         knex("entries")
           .insert({
-            location: "Seymour",
-            category: "Mountains",
+            location: "Mountains",
+            category: "Hike",
             textContent:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in feugiat dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec ultricies accumsan rutrum. Aliquam ex lorem, euismod quis nunc non, varius bibendum metus. Mauris semper, metus nec faucibus vehicula, purus magna accumsan elit, nec tempus dolor massa ac erat. ",
             date: "2022-04-01",

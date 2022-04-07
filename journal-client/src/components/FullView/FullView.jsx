@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { RiFullscreenLine } from "react-icons/ri";
 import { MdOutlineGridView } from "react-icons/md";
+import { convertTime } from "../../utilities/convertTime.js";
 
 const serverURL = `http://localhost:5050`;
 
@@ -43,29 +44,28 @@ class FullView extends Component {
     return (
       <>
         <div className="gallery__wrapper">
-          <div className="gallery__image-container">
+          <div className="multiView__container">
             <h1 className="gallery__title">
               {this.state.selectedAlbumDetail.location}
             </h1>
-            <div className="multiView__container">
-              <h2 className="multiView__location">
-                {this.state.selectedAlbumDetail.date}
-              </h2>
-              <div className="multiView__container--buttons">
-                <Link
-                  to={`/gallery/multi/${this.state.selectedAlbumDetail.id}`}
-                >
-                  <MdOutlineGridView className="view-button " />
-                </Link>
-                <RiFullscreenLine className="view-button button-active" />
-              </div>
+            {/* <h2 className="multiView__location"></h2> */}
+            <div className="multiView__container--buttons">
+              <Link to={`/gallery/multi/${this.state.selectedAlbumDetail.id}`}>
+                <MdOutlineGridView className="view-button " />
+              </Link>
+              <RiFullscreenLine className="view-button button-active" />
             </div>
+          </div>
+          <div className="gallery__image-container">
             <Slider
               selectedPhotos={this.state.selectedPhotos}
               slides={this.state.selectedPhotos}
             />
+
             <div className="gallery__image-info">
-              <p className="gallery__image-info--date">16.11.2019</p>
+              <p className="gallery__image-info--date">
+                {convertTime(this.state.selectedAlbumDetail.date)}
+              </p>
               <p className="gallery__image-info--text">Canon AE-1</p>
               <p className="gallery__image-info--text">Portra 400</p>
             </div>

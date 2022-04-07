@@ -18,13 +18,12 @@ class AddNew extends Component {
     imageURL: "",
   };
 
-  componentDidMount() {
-    document.title = "new entry";
-  }
+  // componentDidMount()
 
   //handle the files uploaded
   handleFile(e) {
-    let file = e.target.files[0];
+    let file = e.target.files;
+    console.log(file);
     this.setState({ file });
   }
   async handleUpload(e) {
@@ -128,11 +127,15 @@ class AddNew extends Component {
 
 export default AddNew;
 
-const uploadImage = async (file) => {
+const uploadImage = async (file, entry) => {
   try {
+    console.log(entry);
     console.log("Upload Image", file);
     const formData = new FormData();
-    formData.append("galleryImage", file);
+    Array.from(file).forEach((img) => {
+      formData.append("galleryImage", img);
+    });
+    formData.append(entry);
     formData.append("destination", "uploads");
     formData.append("create_thumbnail", true);
     const config = {

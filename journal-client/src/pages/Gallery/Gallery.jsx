@@ -8,6 +8,7 @@ import FullView from "../../components/FullView/FullView";
 import { Route, Switch } from "react-router-dom";
 
 function Gallery(props) {
+  document.title = "Film Journal";
   return (
     <>
       <NavBar />

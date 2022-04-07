@@ -4,6 +4,7 @@ import SiteLoginForm from "../../components/SiteLoginForm/SiteLoginForm";
 import { Route, Switch } from "react-router-dom";
 
 function WelcomePage(props) {
+  document.title = "Film Journal";
   return (
     <>
       <section className="welcome">

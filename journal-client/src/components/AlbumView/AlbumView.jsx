@@ -49,20 +49,17 @@ class AlbumView extends Component {
             <h1 className="albums__sort">2021</h1>
             <div className="albums-content">
               <div className="albums-content__container">
-                {this.state.albumArray.map((album) => (
+                {this.state.albumArray.map((album, index) => (
                   <Link
                     to={`gallery/multi/${album.id}`}
+                    key={index}
                     className={
                       album.id % 5 == 0
                         ? "box zoom-in col-row-span-2"
                         : "box zoom-in "
                     }
                   >
-                    <img
-                      className="image"
-                      key={album.id}
-                      src={album.photo.path}
-                    ></img>
+                    <img className="image" src={album.photo.path}></img>
 
                     <p>{album.location}</p>
                   </Link>
