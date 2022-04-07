@@ -44,13 +44,13 @@ class MultiView extends Component {
     return (
       <>
         <section className="multiView">
-          <h1 className="multiView__title">
-            {this.state.selectedAlbumDetail.location}
-          </h1>
           <div className="multiView__container">
-            <h2 className="multiView__location">
+            {/* <h2 className="multiView__location">
               {this.state.selectedAlbumDetail.date}
-            </h2>
+            </h2> */}
+            <h1 className="multiView__title">
+              {this.state.selectedAlbumDetail.location}
+            </h1>
             <div className="multiView__container--buttons">
               <MdOutlineGridView className="view-button button-active" />
               <Link to={`/gallery/full/${this.state.selectedAlbumDetail.id}`}>
