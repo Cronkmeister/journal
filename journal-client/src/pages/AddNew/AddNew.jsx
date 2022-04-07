@@ -2,6 +2,7 @@ import "./AddNew.scss";
 import React, { Component } from "react";
 import axios from "axios";
 import FormData from "form-data";
+import { Redirect } from "react-router-dom";
 
 const PORT = "5050";
 const apiURL = `http://localhost:${PORT}`;
@@ -16,6 +17,7 @@ class AddNew extends Component {
     film: "",
     notes: "",
     imageURL: "",
+    isRedirecting: false,
   };
 
   // componentDidMount()
@@ -39,7 +41,8 @@ class AddNew extends Component {
     };
     // console.log(newEntry);
     // console.log(this.state.file);
-    await uploadImage(this.state.file, newEntry);
+    await uploadImage(this.state.file);
+    this.setState({ isRedirecting: true });
   }
 
   //set state for other info inputs
@@ -50,6 +53,10 @@ class AddNew extends Component {
   };
 
   render() {
+    if (this.state.isRedirecting) {
+      return <Redirect to="/gallery/new/success" />;
+    }
+
     return (
       <>
         <section className="new">
@@ -127,15 +134,15 @@ class AddNew extends Component {
 
 export default AddNew;
 
-const uploadImage = async (file, entry) => {
+const uploadImage = async (file) => {
   try {
-    console.log(entry);
+    // console.log(entry);
     console.log("Upload Image", file);
     const formData = new FormData();
     Array.from(file).forEach((img) => {
       formData.append("galleryImage", img);
     });
-    formData.append(entry);
+    // formData.append(entry);
     formData.append("destination", "uploads");
     formData.append("create_thumbnail", true);
     const config = {

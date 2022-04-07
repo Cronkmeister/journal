@@ -1,6 +1,7 @@
 import "./Gallery.scss";
 import NavBar from "../../components/NavBar/NavBar";
 import AddNew from "../AddNew/AddNew";
+import AddNewSuccess from "../AddNewSuccess/AddNewSuccess";
 import PhotoMap from "../PhotoMap/PhotoMap";
 import AlbumView from "../../components/AlbumView/AlbumView";
 import MultiView from "../../components/MultiView/MultiView";
@@ -19,7 +20,11 @@ function Gallery(props) {
           <Route path={`/gallery/multi/:id`} component={MultiView} />
           <Route path={`${props.match.path}/full/:id`} component={FullView} />
           <Route path={`${props.match.path}/map`} component={PhotoMap} />
-          <Route path={`${props.match.path}/new`} component={AddNew} />
+          <Route path={`${props.match.path}/new`} exact component={AddNew} />
+          <Route
+            path={`${props.match.path}/new/success`}
+            component={AddNewSuccess}
+          />
         </Switch>
         {/* </div> */}
       </section>

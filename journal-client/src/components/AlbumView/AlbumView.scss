@@ -35,16 +35,10 @@
 }
 
 .image {
-  //   border: solid 1px $primary-color-3;
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-
-// .image:nth-of-type(2n + 1) {
-//   grid-column: span 2;
-//   grid-row: span 2;
-// }
 
 .col-span-2 {
   margin-bottom: $mobile-margin;
@@ -66,8 +60,6 @@
 
 .box {
   position: relative;
-  // max-height: 350px;
-  //   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 1.4px 1.7px rgba(0, 0, 0, 0.017),
     0 3.3px 4px rgba(0, 0, 0, 0.024), 0 6.3px 7.5px rgba(0, 0, 0, 0.03),
