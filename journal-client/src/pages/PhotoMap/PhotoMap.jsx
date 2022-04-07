@@ -32,13 +32,11 @@ const options = {
 const mapId = "51250d1ff6cc5f6c";
 
 function PhotoMap() {
-  // console.log(photoData.entries);
   //load google map api with id and API key
-  // console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     mapId: "51250d1ff6cc5f6c",
-    googleMapsApiKey: "AIzaSyAZ6KbgLsi5vqICnw2fgHcK4lWF50AFeKM",
+    googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
   });
 
   //state for markers
