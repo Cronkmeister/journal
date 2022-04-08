@@ -13,10 +13,10 @@ Do all your photos live on hard-drives or in folders gathering digital dust? Use
 
 <details>
   <ul>
-  <li>Overiew
-  <li>Getting Started 
-  <li>Usuage
-  <li>Upcoming Updates
+    <li><a href="#overview">Overiew</a></li>
+  <li><a href="#getting-started">Getting Started</a></li> 
+    <li><a href="#usage">Usage</a></li>
+  <li><a href="#upcoming-updates">Upcoming Updates</a></li>
 </ul>
     </details>  
     
