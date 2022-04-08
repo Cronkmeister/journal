@@ -15,9 +15,11 @@
   "author": "Jonny Cronk",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
+    "form-data": "^4.0.0",
     "knex": "^1.0.4",
     "multer": "^1.4.4",
     "mysql": "^2.18.1"

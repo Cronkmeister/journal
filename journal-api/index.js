@@ -2,14 +2,19 @@ const { response } = require("express");
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const cors = require("cors");
 const PORT = process.env.PORT || 5050;
-const app = express();
+
 require("dotenv").config();
 const knex = require("knex")(require("./knexfile").development);
 
 const entryRoutes = require("./routes/entriesRoute");
 
-// app.use("/entries", entryRoutes);
+//middleware
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use("/entries", entryRoutes);
 
 // Set Storage Engine
 const storage = multer.diskStorage({
@@ -53,7 +58,7 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => res.render("index"));
 
 //Public Folder
-app.use(express.static("./public"));
+app.use(express.static("public"));
 
 app.post("/upload", (req, res) => {
   upload(req, res, (err) => {
@@ -65,19 +70,25 @@ app.post("/upload", (req, res) => {
       if (req.files == undefined) {
         res.send("error:no file selected");
       } else {
-        console.log(req.files);
+        console.log(req);
+        console.log("files:", req.files);
+        console.log("the body:", req.body);
 
         //add database record
         knex("entries")
           .insert({
-            location: "vancouver",
-            category: "watersport",
-            ["text content"]: "this is fun",
+            location: "Mountains",
+            category: "Hike",
+            textContent:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in feugiat dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec ultricies accumsan rutrum. Aliquam ex lorem, euismod quis nunc non, varius bibendum metus. Mauris semper, metus nec faucibus vehicula, purus magna accumsan elit, nec tempus dolor massa ac erat. ",
             date: "2022-04-01",
+            // imageURL: JSON.stringify(req.files),
             imageURL: JSON.stringify(req.files),
+            camera: "canon AE-1",
+            film: "Portra 400",
           })
           .then((response) => {
-            console.log(response);
+            // console.log(response);
           })
           .catch((err) => console.log(err));
 

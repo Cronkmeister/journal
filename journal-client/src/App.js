@@ -1,12 +1,19 @@
 import "./App.scss";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
+import WelcomePage from "./pages/WelcomePage/WelcomePage";
+import Gallery from "./pages/Gallery/Gallery";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Capstone Project</p>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={WelcomePage} />
+          <Route path="/gallery" component={Gallery} />
+        </Switch>
+      </BrowserRouter>
+    </>
   );
 }
 

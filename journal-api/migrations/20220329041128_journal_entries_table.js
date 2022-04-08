@@ -3,9 +3,11 @@ exports.up = function (knex) {
     table.increments("id").primary();
     table.string("location").notNullable();
     table.string("category").notNullable();
-    table.string("text content").notNullable();
+    table.text("textContent", ["TEXT"]).notNullable();
     table.date("date").notNullable();
-    table.string("imageURL").notNullable();
+    table.text("imageURL", ["MEDIUMTEXT"]);
+    table.string("camera");
+    table.string("film");
   });
 };
 

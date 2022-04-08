@@ -1,0 +1,9 @@
+@use "../../styles/global.scss" as *;
+
+.gallery {
+  background-color: $primary-color-1-black;
+  color: $primary-color-2-white;
+  &__wrapper {
+    @include margin;
+  }
+}
