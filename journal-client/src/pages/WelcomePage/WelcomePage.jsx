@@ -11,7 +11,8 @@ function WelcomePage(props) {
         <div className="welcome__container-left"></div>
         <div className="welcome__container-right">
           <Switch>
-            <Route path={`${props.match.path}`} component={SiteLogin} />
+            {/* <Route path={`${props.match.path}`} exact component={SiteLogin} /> */}
+            <Route path="/" exact component={SiteLogin} />
             <Route path="/login" component={SiteLoginForm} />
           </Switch>
         </div>
