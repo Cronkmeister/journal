@@ -13,6 +13,9 @@
   }
   &__container {
     @include display-flex(row, center, space-between);
+    &--buttons {
+      display: flex;
+    }
   }
 }
 .view-button {

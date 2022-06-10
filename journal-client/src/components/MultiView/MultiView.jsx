@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { RiFullscreenLine } from "react-icons/ri";
 import { MdOutlineGridView } from "react-icons/md";
+import Modal from "../Modal/Modal";
 
 const serverURL = `http://localhost:5050`;
 
@@ -14,6 +15,7 @@ class MultiView extends Component {
   state = {
     selectedAlbumDetail: [],
     selectedPhotos: [],
+    isShowing: false,
   };
 
   componentDidMount() {
@@ -40,6 +42,13 @@ class MultiView extends Component {
       .catch((err) => console.log(err));
   }
 
+  showModal() {
+    this.setState({ isShowing: true });
+  }
+  hideModal() {
+    this.setState({ isShowing: false });
+  }
+
   render() {
     return (
       <>
@@ -62,13 +71,18 @@ class MultiView extends Component {
             <div className="main-content__container">
               {this.state.selectedPhotos.map((album, index) => (
                 <>
-                  <img className="image col-span-2" src={album.path}></img>
+                  <img
+                    className="image col-span-2"
+                    key={index}
+                    src={album.path}
+                  ></img>
 
                   <div className="image"></div>
                 </>
               ))}
             </div>
           </div>
+          {/* <Modal /> */}
         </section>
       </>
     );
