@@ -40,8 +40,6 @@ class AlbumView extends Component {
   }
 
   render() {
-    console.log(this.state.albumArray);
-
     return (
       <>
         <section className="albums">

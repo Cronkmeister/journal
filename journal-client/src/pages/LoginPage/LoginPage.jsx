@@ -11,7 +11,7 @@ function LoginPage() {
             <label className="welcome__form-label">username</label>
             <input className="welcome__form-input"></input>
             <label className="welcome__form-label">password</label>
-            <input className="welcome__form-input"></input>
+            <input className="welcome__form-input" type="password"></input>
             <button className="welcome__form-button" type="submit">
               Submit
             </button>

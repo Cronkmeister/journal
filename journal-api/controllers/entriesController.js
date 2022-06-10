@@ -87,7 +87,7 @@ exports.deleEntry = (req, res) => {
     .delete()
     .where({ id: req.params.id })
     .then(() => {
-      res.status(204).send(`Entry with id: ${req.params.id} has been deleted`);
+      res.status(200).send(`Entry with id: ${req.params.id} has been deleted`);
     })
     .catch((err) =>
       res.status(400).send(`Error deleting Entry ${req.param.id} ${err}`)
