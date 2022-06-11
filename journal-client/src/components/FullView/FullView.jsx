@@ -66,7 +66,9 @@ class FullView extends Component {
               </Link>
               <RiFullscreenLine className="view-button button-active" />
               <div className="button-divider"></div>
-              <MdOutlineEdit className="gallery__button" />
+              <Link to={`/gallery/edit/${this.state.selectedAlbumDetail.id}`}>
+                <MdOutlineEdit className="gallery__button" />
+              </Link>
               <HiOutlineTrash
                 className="gallery__button"
                 onClick={() => this.showModal()}
@@ -109,5 +111,3 @@ class FullView extends Component {
 }
 
 export default FullView;
-
-// .get(`${serverURL}/entries/${this.props.match.params.id}`)

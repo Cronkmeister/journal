@@ -70,9 +70,6 @@ app.post("/upload", (req, res) => {
       if (req.files == undefined) {
         res.send("error:no file selected");
       } else {
-        // console.log("files:", req.files);
-        // console.log("the body:", req.body);
-
         //add database record
         knex("entries")
           .insert({

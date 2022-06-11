@@ -1,75 +1,86 @@
-import "./AddNew.scss";
+import "./Edit.scss";
 import React, { Component } from "react";
 import axios from "axios";
-import FormData from "form-data";
-import { Redirect } from "react-router-dom";
+import { convertTime } from "../../utilities/convertTime";
 
-const PORT = "5050";
-// const apiURL = `http://localhost:${PORT}`;
+//set id of incoming entry as variable
 
-class AddNew extends Component {
+class Edit extends Component {
   state = {
-    file: null,
-    date: "",
     location: "",
     category: "",
+    textContent: "",
+    date: "",
+    imageURL: "",
     camera: "",
     film: "",
-    notes: "",
-    imageURL: "",
     isRedirecting: false,
   };
 
-  //handle the files uploaded
-  handleFile(e) {
-    let file = e.target.files;
-    this.setState({ file });
-  }
-  async handleUpload(e) {
-    e.preventDefault();
-
-    let newEntry = {
-      date: this.state.date,
-      location: this.state.location,
-      category: this.state.category,
-      camera: this.state.camera,
-      film: this.state.film,
-      textContent: this.state.notes,
-    };
-
-    await uploadImage(this.state.file, newEntry);
-    this.setState({ isRedirecting: true });
+  componentDidMount() {
+    document.title = "Edit Entry";
+    this.fetchEntryInfo();
   }
 
-  //set state for other info inputs
+  //load the details from entry to be editted
+  fetchEntryInfo() {
+    let id = this.props.match.params.id;
+    axios
+      .get(`http://localhost:5050/entries/${id}`)
+      .then((response) => {
+        let data = response.data;
+        this.setState({
+          date: convertTime(data.date),
+          location: data.location,
+          category: data.category,
+          camera: data.camera,
+          film: data.film,
+          textContent: data.textContent,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  //allows for form field values to be changed
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
+  //save the new entry and make PUT request
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let id = this.props.match.params.id;
+
+    const editedEntry = {
+      location: this.state.location,
+      category: this.state.category,
+      textContent: this.state.textContent,
+      date: this.state.date,
+      camera: this.state.camera,
+      film: this.state.film,
+    };
+
+    axios
+      .put(`http://localhost:5050/entries/${id}`, editedEntry)
+      .then((response) => console.log(response))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
-    if (this.state.isRedirecting) {
-      return <Redirect to="/gallery/new/success" />;
-    }
-
     return (
       <>
         <section className="new">
           <div className="new__wrapper">
-            <form className="new__form" onSubmit={(e) => this.handleUpload(e)}>
-              <h2 className="new__form-heading">new entry</h2>
+            <form className="new__form" onSubmit={this.handleSubmit}>
+              <h2 className="new__form-heading">edit entry</h2>
               <div className="new__form-container">
                 <div className="new__form-container--left">
-                  <label>Upload</label>
-                  <input
-                    className="new__form-file-input"
-                    name="galleryImage"
-                    type="file"
-                    onChange={(e) => this.handleFile(e)}
-                    multiple
-                  />
-                  <label className="new__form-label">Date</label>
+                  <label className="new__form-label">Date yyyy-mm-dd</label>
                   <input
                     className="new__form-input"
                     onChange={this.handleChange}
@@ -110,14 +121,14 @@ class AddNew extends Component {
                   <textarea
                     className="new__form-textarea"
                     onChange={this.handleChange}
-                    value={this.state.notes}
+                    value={this.state.textContent}
                     name="notes"
                   ></textarea>
                 </div>
               </div>
               <div className="new__form-submit--container">
                 <button className="new__form-submit" type="submit">
-                  submit
+                  save
                 </button>
               </div>
             </form>
@@ -128,31 +139,4 @@ class AddNew extends Component {
   }
 }
 
-export default AddNew;
-
-//handle upload of image and package it with other info from form
-const uploadImage = async (file, entry) => {
-  try {
-    const formData = new FormData();
-    Array.from(file).forEach((img) => {
-      formData.append("galleryImage", img);
-    });
-    //assign keys object containing entry details in order to append to formdata
-    Object.keys(entry).forEach((key) => formData.append(key, entry[key]));
-    formData.append("destination", "uploads");
-    formData.append("create_thumbnail", true);
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
-
-    const HOST = "http://localhost:";
-    const url = `${HOST}${PORT}/upload`;
-
-    const result = await axios.post(url, formData, config);
-    console.log("Result: ", result);
-  } catch (error) {
-    console.error(error);
-  }
-};
+export default Edit;

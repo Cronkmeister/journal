@@ -3,7 +3,8 @@ import { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { RiFullscreenLine } from "react-icons/ri";
-import { MdOutlineGridView } from "react-icons/md";
+import { MdOutlineGridView, MdOutlineEdit } from "react-icons/md";
+import { HiOutlineTrash } from "react-icons/hi";
 import Modal from "../Modal/Modal";
 
 const serverURL = `http://localhost:5050`;
@@ -65,6 +66,14 @@ class MultiView extends Component {
               <Link to={`/gallery/full/${this.state.selectedAlbumDetail.id}`}>
                 <RiFullscreenLine className="view-button" />
               </Link>
+              <div className="button-divider"></div>
+              <Link to={`/gallery/edit/${this.state.selectedAlbumDetail.id}`}>
+                <MdOutlineEdit className="gallery__button" />
+              </Link>
+              <HiOutlineTrash
+                className="gallery__button"
+                onClick={() => this.showModal()}
+              />
             </div>
           </div>
           <div className="main-content">
@@ -82,7 +91,14 @@ class MultiView extends Component {
               ))}
             </div>
           </div>
-          {/* <Modal /> */}
+          {this.state.isShowing ? (
+            <Modal
+              id={this.props.match.params.id}
+              handleClose={() => this.hideModal()}
+            />
+          ) : (
+            ""
+          )}
         </section>
       </>
     );
