@@ -1,7 +1,7 @@
 import "./Slider.scss";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function Slider(props) {
   const [current, setCurrent] = useState(0);
@@ -36,7 +36,7 @@ function Slider(props) {
               <img
                 className="gallery__hero-image"
                 src={album.path}
-                alt="travel image"
+                alt="travel"
               ></img>
             )}
           </div>

@@ -52,12 +52,12 @@ class AlbumView extends Component {
                     to={`gallery/multi/${album.id}`}
                     key={index}
                     className={
-                      album.id % 5 == 0
+                      album.id % 5 === 0
                         ? "box zoom-in col-row-span-2"
                         : "box zoom-in "
                     }
                   >
-                    <img className="image" src={album.photo.path}></img>
+                    <img className="image" src={album.photo.path} alt=""></img>
 
                     <p>{album.location}</p>
                   </Link>

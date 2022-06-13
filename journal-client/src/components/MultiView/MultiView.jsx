@@ -10,9 +10,6 @@ import Modal from "../Modal/Modal";
 const serverURL = `http://localhost:5050`;
 
 class MultiView extends Component {
-  // constructor(props) {
-  // console.log(props);
-  // super(props);
   state = {
     selectedAlbumDetail: [],
     selectedPhotos: [],
@@ -82,8 +79,9 @@ class MultiView extends Component {
                 <>
                   <img
                     className="image col-span-2"
-                    key={index}
                     src={album.path}
+                    key={index}
+                    alt="travel album"
                   ></img>
 
                   <div className="image"></div>

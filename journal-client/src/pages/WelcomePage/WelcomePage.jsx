@@ -1,7 +1,7 @@
 import "./WelcomePage.scss";
 import { Link } from "react-router-dom";
 
-function WelcomePage(props) {
+function WelcomePage() {
   document.title = "Film Journal";
   return (
     <>
@@ -26,9 +26,3 @@ function WelcomePage(props) {
 }
 
 export default WelcomePage;
-
-// {/* <Switch>
-//             {/* <Route path={`${props.match.path}`} exact component={SiteLogin} /> */}
-//             <Route path="/" component={SiteLogin} />
-//             <Route path="/enter/login" component={SiteLoginForm} />
-//           </Switch> */}

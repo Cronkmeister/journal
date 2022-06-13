@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { convertTime } from "../../utilities/convertTime";
 
-//set id of incoming entry as variable
+const serverURL = `http://localhost:5050`;
 
 class Edit extends Component {
   state = {
@@ -14,7 +14,9 @@ class Edit extends Component {
     imageURL: "",
     camera: "",
     film: "",
-    isRedirecting: false,
+    selectedPhotos: [],
+    firstPhoto: "",
+    isSaved: false,
   };
 
   componentDidMount() {
@@ -29,6 +31,7 @@ class Edit extends Component {
       .get(`http://localhost:5050/entries/${id}`)
       .then((response) => {
         let data = response.data;
+        //set state for form field with response data
         this.setState({
           date: convertTime(data.date),
           location: data.location,
@@ -36,6 +39,19 @@ class Edit extends Component {
           camera: data.camera,
           film: data.film,
           textContent: data.textContent,
+        });
+        // get photos from server URL path
+        let parsedPhotos = JSON.parse(response.data.imageURL);
+        parsedPhotos = parsedPhotos.map((photo) => {
+          let photoArray = photo.path.split("/");
+          photoArray[0] = serverURL;
+          photo.path = photoArray.join("/");
+          return photo;
+        });
+
+        this.setState({
+          selectedPhotos: parsedPhotos,
+          firstPhoto: parsedPhotos[0].path,
         });
       })
       .catch((err) => {
@@ -65,7 +81,11 @@ class Edit extends Component {
 
     axios
       .put(`http://localhost:5050/entries/${id}`, editedEntry)
-      .then((response) => console.log(response))
+      .then((response) => {
+        if (response.status === 200) {
+          this.setState({ isSaved: true });
+        }
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -75,63 +95,81 @@ class Edit extends Component {
     return (
       <>
         <section className="new">
-          <div className="new__wrapper">
-            <form className="new__form" onSubmit={this.handleSubmit}>
-              <h2 className="new__form-heading">edit entry</h2>
-              <div className="new__form-container">
-                <div className="new__form-container--left">
-                  <label className="new__form-label">Date yyyy-mm-dd</label>
-                  <input
-                    className="new__form-input"
-                    onChange={this.handleChange}
-                    value={this.state.date}
-                    name="date"
-                  ></input>
-                  <label className="new__form-label">Location</label>
-                  <input
-                    className="new__form-input"
-                    onChange={this.handleChange}
-                    value={this.state.location}
-                    name="location"
-                  ></input>
-                  <label className="new__form-label">Category</label>
-                  <input
-                    className="new__form-input"
-                    onChange={this.handleChange}
-                    value={this.state.category}
-                    name="category"
-                  ></input>
+          <div className="edit__background-container">
+            {/* <img
+              className="edit__background-image"
+              src={this.state.firstPhoto}
+              alt="background image from album"
+            ></img> */}
+            <div className="new__wrapper">
+              <form className="new__form" onSubmit={this.handleSubmit}>
+                <h2 className="new__form-heading">edit entry</h2>
+                <div className="new__form-container">
+                  <div className="new__form-container--left">
+                    <label className="new__form-label">Date yyyy-mm-dd</label>
+                    <input
+                      className="new__form-input"
+                      onChange={this.handleChange}
+                      value={this.state.date}
+                      name="date"
+                    ></input>
+                    <label className="new__form-label">Location</label>
+                    <input
+                      className="new__form-input"
+                      onChange={this.handleChange}
+                      value={this.state.location}
+                      name="location"
+                    ></input>
+                    <label className="new__form-label">Category</label>
+                    <input
+                      className="new__form-input"
+                      onChange={this.handleChange}
+                      value={this.state.category}
+                      name="category"
+                    ></input>
+                  </div>
+                  <div className="new__form-container--right">
+                    <label className="new__form-label">Camera</label>
+                    <input
+                      className="new__form-input"
+                      onChange={this.handleChange}
+                      value={this.state.camera}
+                      name="camera"
+                    ></input>
+                    <label className="new__form-label">Film</label>
+                    <input
+                      className="new__form-input"
+                      onChange={this.handleChange}
+                      value={this.state.film}
+                      name="film"
+                    ></input>
+                    <label className="new__form-label">Notes</label>
+                    <textarea
+                      className="new__form-textarea"
+                      onChange={this.handleChange}
+                      value={this.state.textContent}
+                      name="notes"
+                    ></textarea>
+                  </div>
                 </div>
-                <div className="new__form-container--right">
-                  <label className="new__form-label">Camera</label>
-                  <input
-                    className="new__form-input"
-                    onChange={this.handleChange}
-                    value={this.state.camera}
-                    name="camera"
-                  ></input>
-                  <label className="new__form-label">Film</label>
-                  <input
-                    className="new__form-input"
-                    onChange={this.handleChange}
-                    value={this.state.film}
-                    name="film"
-                  ></input>
-                  <label className="new__form-label">Notes</label>
-                  <textarea
-                    className="new__form-textarea"
-                    onChange={this.handleChange}
-                    value={this.state.textContent}
-                    name="notes"
-                  ></textarea>
+                <div className="new__form-submit--container">
+                  <button
+                    className="edit__button-back"
+                    onClick={() => this.props.history.goBack()}
+                  >
+                    go back
+                  </button>
+                  <button className="new__form-submit" type="submit">
+                    save
+                  </button>
+                  {this.state.isSaved ? (
+                    <p className="edit__saved">saved!</p>
+                  ) : (
+                    ""
+                  )}
                 </div>
-              </div>
-              <div className="new__form-submit--container">
-                <button className="new__form-submit" type="submit">
-                  save
-                </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </section>
       </>
