@@ -1,7 +1,7 @@
 import "./Slider.scss";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function Slider(props) {
   const [current, setCurrent] = useState(0);
@@ -14,8 +14,6 @@ function Slider(props) {
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
-
-  console.log(current);
 
   if (!Array.isArray(props.slides) || props.slides.length <= 0) {
     return null;
@@ -38,7 +36,7 @@ function Slider(props) {
               <img
                 className="gallery__hero-image"
                 src={album.path}
-                alt="travel image"
+                alt="travel"
               ></img>
             )}
           </div>

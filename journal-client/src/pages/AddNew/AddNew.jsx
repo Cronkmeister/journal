@@ -5,7 +5,7 @@ import FormData from "form-data";
 import { Redirect } from "react-router-dom";
 
 const PORT = "5050";
-const apiURL = `http://localhost:${PORT}`;
+// const apiURL = `http://localhost:${PORT}`;
 
 class AddNew extends Component {
   state = {
@@ -20,12 +20,9 @@ class AddNew extends Component {
     isRedirecting: false,
   };
 
-  // componentDidMount()
-
   //handle the files uploaded
   handleFile(e) {
     let file = e.target.files;
-    console.log(file);
     this.setState({ file });
   }
   async handleUpload(e) {
@@ -39,9 +36,8 @@ class AddNew extends Component {
       film: this.state.film,
       textContent: this.state.notes,
     };
-    // console.log(newEntry);
-    // console.log(this.state.file);
-    await uploadImage(this.state.file);
+
+    await uploadImage(this.state.file, newEntry);
     this.setState({ isRedirecting: true });
   }
 
@@ -134,15 +130,15 @@ class AddNew extends Component {
 
 export default AddNew;
 
-const uploadImage = async (file) => {
+//handle upload of image and package it with other info from form
+const uploadImage = async (file, entry) => {
   try {
-    // console.log(entry);
-    console.log("Upload Image", file);
     const formData = new FormData();
     Array.from(file).forEach((img) => {
       formData.append("galleryImage", img);
     });
-    // formData.append(entry);
+    //assign keys object containing entry details in order to append to formdata
+    Object.keys(entry).forEach((key) => formData.append(key, entry[key]));
     formData.append("destination", "uploads");
     formData.append("create_thumbnail", true);
     const config = {
@@ -160,43 +156,3 @@ const uploadImage = async (file) => {
     console.error(error);
   }
 };
-
-//// OLD CODE /////
-//   onPhotoUpload = (event) => {
-//     console.log(event);
-//     // this.setState({ selectedFiles: event.target.files[0] });
-//     this.setState({
-//       selectedFiles: event.target.files[0],
-//     });
-//   };
-
-//send new entry to database once it is created
-/*
-  NOT DOING ANYTHING RIGHT NOW
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newEntry = {
-      selectedFiles: this.state.selectedFiles,
-      date: this.state.date,
-      location: this.state.location,
-      category: this.state.category,
-      camera: this.state.camera,
-      film: this.state.film,
-      textContent: this.state.notes,
-    };
-    console.log(newEntry);
-
-    axios
-      .post(apiURL + "/entries", newEntry)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
- 
-*/

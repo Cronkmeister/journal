@@ -1,19 +1,24 @@
 import "./WelcomePage.scss";
-import SiteLogin from "../../components/SiteLogin/SiteLogin";
-import SiteLoginForm from "../../components/SiteLoginForm/SiteLoginForm";
-import { Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function WelcomePage(props) {
+function WelcomePage() {
   document.title = "Film Journal";
   return (
     <>
       <section className="welcome">
         <div className="welcome__container-left"></div>
         <div className="welcome__container-right">
-          <Switch>
-            <Route path={`${props.match.path}`} component={SiteLogin} />
-            <Route path="/login" component={SiteLoginForm} />
-          </Switch>
+          <div className="welcome__button-box">
+            <h2 className="welcome__title">
+              Welcome to <br></br>Journal
+            </h2>
+            <Link to="/gallery" className="welcome__button">
+              Enter
+            </Link>
+            <Link to="/login" className="welcome__button">
+              Log in
+            </Link>
+          </div>
         </div>
       </section>
     </>

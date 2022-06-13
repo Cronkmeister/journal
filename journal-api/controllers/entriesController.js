@@ -73,8 +73,7 @@ exports.updateEntry = (req, res) => {
     .update(selectedEntry)
     .where({ id: req.params.id })
     .then(() => {
-      res.status(200);
-      send(`Entry with id: ${req.params.id} has been updated`);
+      res.status(200).send(`Entry with id: ${req.params.id} has been updated`);
     })
     .catch((err) =>
       res.status(400).send(`Error updating Entry ${req.params.id} ${err}`)
@@ -87,7 +86,7 @@ exports.deleEntry = (req, res) => {
     .delete()
     .where({ id: req.params.id })
     .then(() => {
-      res.status(204).send(`Entry with id: ${req.params.id} has been deleted`);
+      res.status(200).send(`Entry id: ${req.params.id} has been deleted`);
     })
     .catch((err) =>
       res.status(400).send(`Error deleting Entry ${req.param.id} ${err}`)

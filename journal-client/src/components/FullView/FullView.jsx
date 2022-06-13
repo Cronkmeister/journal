@@ -1,10 +1,12 @@
 import "./FullView.scss";
 import Slider from "../../components/Slider/Slider";
+import Modal from "../Modal/Modal";
 import { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { RiFullscreenLine } from "react-icons/ri";
-import { MdOutlineGridView } from "react-icons/md";
+import { MdOutlineGridView, MdOutlineEdit } from "react-icons/md";
+import { HiOutlineTrash } from "react-icons/hi";
 import { convertTime } from "../../utilities/convertTime.js";
 
 const serverURL = `http://localhost:5050`;
@@ -15,6 +17,7 @@ class FullView extends Component {
   state = {
     selectedAlbumDetail: [],
     selectedPhotos: [],
+    isShowing: false,
   };
 
   componentDidMount() {
@@ -40,6 +43,14 @@ class FullView extends Component {
       .catch((err) => console.log(err));
   }
 
+  showModal = () => {
+    this.setState({ isShowing: true });
+  };
+
+  hideModal = () => {
+    this.setState({ isShowing: false });
+  };
+
   render() {
     return (
       <>
@@ -51,9 +62,17 @@ class FullView extends Component {
             {/* <h2 className="multiView__location"></h2> */}
             <div className="multiView__container--buttons">
               <Link to={`/gallery/multi/${this.state.selectedAlbumDetail.id}`}>
-                <MdOutlineGridView className="view-button " />
+                <MdOutlineGridView className="view-button" />
               </Link>
               <RiFullscreenLine className="view-button button-active" />
+              <div className="button-divider"></div>
+              <Link to={`/gallery/edit/${this.state.selectedAlbumDetail.id}`}>
+                <MdOutlineEdit className="gallery__button" />
+              </Link>
+              <HiOutlineTrash
+                className="gallery__button"
+                onClick={() => this.showModal()}
+              />
             </div>
           </div>
           <div className="gallery__image-container">
@@ -66,13 +85,25 @@ class FullView extends Component {
               <p className="gallery__image-info--date">
                 {convertTime(this.state.selectedAlbumDetail.date)}
               </p>
-              <p className="gallery__image-info--text">Canon AE-1</p>
-              <p className="gallery__image-info--text">Portra 400</p>
+              <p className="gallery__image-info--text">
+                {this.state.selectedAlbumDetail.camera}
+              </p>
+              <p className="gallery__image-info--text">
+                {this.state.selectedAlbumDetail.film}
+              </p>
             </div>
             <p className="gallery__description">
               {this.state.selectedAlbumDetail.textContent}
             </p>
           </div>
+          {this.state.isShowing ? (
+            <Modal
+              id={this.props.match.params.id}
+              handleClose={() => this.hideModal()}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </>
     );
@@ -80,5 +111,3 @@ class FullView extends Component {
 }
 
 export default FullView;
-
-// .get(`${serverURL}/entries/${this.props.match.params.id}`)
