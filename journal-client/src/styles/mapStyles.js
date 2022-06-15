@@ -1,4 +1,4 @@
-export default [
+const mapStyles = [
   {
     featureType: "poi",
     elementType: "all",
@@ -198,3 +198,5 @@ export default [
     ],
   },
 ];
+
+export default mapStyles;

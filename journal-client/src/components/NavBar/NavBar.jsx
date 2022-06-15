@@ -1,4 +1,4 @@
-import "./NarBar.scss";
+import "./NavBar.scss";
 import logo from "../../assests/logo/logo.png";
 import { Link, NavLink } from "react-router-dom";
 
@@ -11,7 +11,11 @@ function NavBar() {
             <div className="navbar__logo-container">
               <h2 className="navbar__logo">Journal</h2>
               <Link to="/">
-                <img className="navbar__logo-image" src={logo}></img>
+                <img
+                  className="navbar__logo-image"
+                  src={logo}
+                  alt="man holding camera outline"
+                ></img>
               </Link>
             </div>
             <ul className="navbar__links">

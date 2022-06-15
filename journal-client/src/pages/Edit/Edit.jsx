@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { convertTime } from "../../utilities/convertTime";
 
-const serverURL = `http://localhost:5050`;
+const serverURL = process.env.REACT_APP_SERVER_URL;
 
 class Edit extends Component {
   state = {
@@ -28,7 +28,7 @@ class Edit extends Component {
   fetchEntryInfo() {
     let id = this.props.match.params.id;
     axios
-      .get(`http://localhost:5050/entries/${id}`)
+      .get(`${serverURL}/entries/${id}`)
       .then((response) => {
         let data = response.data;
         //set state for form field with response data
@@ -80,7 +80,7 @@ class Edit extends Component {
     };
 
     axios
-      .put(`http://localhost:5050/entries/${id}`, editedEntry)
+      .put(`${serverURL}/entries/${id}`, editedEntry)
       .then((response) => {
         if (response.status === 200) {
           this.setState({ isSaved: true });
@@ -148,7 +148,7 @@ class Edit extends Component {
                       className="new__form-textarea"
                       onChange={this.handleChange}
                       value={this.state.textContent}
-                      name="notes"
+                      name="textContent"
                     ></textarea>
                   </div>
                 </div>

@@ -72,6 +72,9 @@
     &:focus {
       outline: none;
     }
+    &--error {
+      border-bottom: solid 1px rgb(187, 56, 56);
+    }
   }
   &__form-textarea {
     outline: none;

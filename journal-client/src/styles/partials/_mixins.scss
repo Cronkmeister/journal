@@ -102,11 +102,11 @@
   }
 }
 @mixin component-gutter-small {
-  margin-left: $mobile-margin/2;
-  margin-right: $mobile-margin/2;
+  margin-left: calc($mobile-margin/2);
+  margin-right: calc($mobile-margin/2);
   @include tablet {
-    margin-left: $tablet-margin/2;
-    margin-right: $tablet-margin/2;
+    margin-left: calc($tablet-margin/2);
+    margin-right: calc($tablet-margin/2);
   }
 }
 
@@ -145,11 +145,11 @@
 }
 
 @mixin component-margin-top-bottom-flex {
-  margin-top: $mobile-margin/2;
-  margin-bottom: $mobile-margin/2;
+  margin-top: calc($mobile-margin/2);
+  margin-bottom: calc($mobile-margin/2);
   @include tablet {
-    margin-top: $tablet-margin/2;
-    margin-bottom: $tablet-margin/2;
+    margin-top: calc($tablet-margin/2);
+    margin-bottom: calc($tablet-margin/2);
   }
 }
 

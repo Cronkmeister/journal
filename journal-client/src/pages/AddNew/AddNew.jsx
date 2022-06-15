@@ -4,8 +4,8 @@ import axios from "axios";
 import FormData from "form-data";
 import { Redirect } from "react-router-dom";
 
-const PORT = "5050";
-// const apiURL = `http://localhost:${PORT}`;
+// const PORT = "5050";
+const serverURL = process.env.REACT_APP_SERVER_URL;
 
 class AddNew extends Component {
   state = {
@@ -18,6 +18,13 @@ class AddNew extends Component {
     notes: "",
     imageURL: "",
     isRedirecting: false,
+    //error states for blank fields
+    dateERR: false,
+    locationERR: false,
+    categoryERR: false,
+    cameraERR: false,
+    filmERR: false,
+    notesERR: false,
   };
 
   //handle the files uploaded
@@ -37,8 +44,11 @@ class AddNew extends Component {
       textContent: this.state.notes,
     };
 
+    if (!this.isFormValid()) {
+      this.isFieldEmpty();
+      return false;
+    }
     await uploadImage(this.state.file, newEntry);
-    this.setState({ isRedirecting: true });
   }
 
   //set state for other info inputs
@@ -48,8 +58,61 @@ class AddNew extends Component {
     });
   };
 
+  //form validation to check if all fields are filled
+  isFormValid = () => {
+    if (
+      !this.state.date.trim() ||
+      !this.state.location.trim() ||
+      !this.state.category.trim() ||
+      !this.state.camera.trim() ||
+      !this.state.film() ||
+      !this.state.textContent.trim()
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  //check to set which form fields are empty
+  isFieldEmpty = () => {
+    if (!this.state.date.length > 0) {
+      this.setState({ dateERR: true });
+    } else this.setState({ dateERR: false });
+    if (!this.state.location.length > 0) {
+      this.setState({ locationERR: true });
+    } else this.setState({ locationERR: false });
+    if (!this.state.category.length > 0) {
+      this.setState({ categoryERR: true });
+    } else this.setState({ categoryERR: false });
+    if (!this.state.camera.length > 0) {
+      this.setState({ cameraERR: true });
+    } else this.setState({ cameraERR: false });
+    if (!this.state.film.length > 0) {
+      this.setState({ filmERR: true });
+    } else this.setState({ filmERR: false });
+    if (!this.state.notes.length > 0) {
+      this.setState({ notesERR: true });
+    }
+  };
+
   render() {
-    if (this.state.isRedirecting) {
+    const {
+      date,
+      location,
+      category,
+      camera,
+      film,
+      notes,
+      isRedirecting,
+      dateERR,
+      locationERR,
+      categoryERR,
+      cameraERR,
+      filmERR,
+      notesERR,
+    } = this.state;
+
+    if (isRedirecting) {
       return <Redirect to="/gallery/new/success" />;
     }
 
@@ -69,48 +132,79 @@ class AddNew extends Component {
                     onChange={(e) => this.handleFile(e)}
                     multiple
                   />
-                  <label className="new__form-label">Date</label>
+                  <label className="new__form-label">
+                    Date
+                    {dateERR ? (
+                      <span style={{ color: "red" }}> *required</span>
+                    ) : null}
+                  </label>
                   <input
                     className="new__form-input"
                     onChange={this.handleChange}
-                    value={this.state.date}
+                    value={date}
                     name="date"
+                    placeholder="yyyy-mm-dd"
                   ></input>
-                  <label className="new__form-label">Location</label>
+                  <label className="new__form-label">
+                    Location
+                    {locationERR ? (
+                      <span style={{ color: "red" }}> *required</span>
+                    ) : null}
+                  </label>
                   <input
                     className="new__form-input"
                     onChange={this.handleChange}
-                    value={this.state.location}
+                    value={location}
                     name="location"
                   ></input>
-                  <label className="new__form-label">Category</label>
+                  <label className="new__form-label">
+                    Category
+                    {categoryERR ? (
+                      <span style={{ color: "red" }}> *required</span>
+                    ) : null}
+                  </label>
                   <input
                     className="new__form-input"
                     onChange={this.handleChange}
-                    value={this.state.category}
+                    value={category}
                     name="category"
                   ></input>
                 </div>
                 <div className="new__form-container--right">
-                  <label className="new__form-label">Camera</label>
+                  <label className="new__form-label">
+                    Camera
+                    {cameraERR ? (
+                      <span style={{ color: "red" }}> *required</span>
+                    ) : null}
+                  </label>
                   <input
                     className="new__form-input"
                     onChange={this.handleChange}
-                    value={this.state.camera}
+                    value={camera}
                     name="camera"
                   ></input>
-                  <label className="new__form-label">Film</label>
+                  <label className="new__form-label">
+                    Film
+                    {filmERR ? (
+                      <span style={{ color: "red" }}> *required</span>
+                    ) : null}
+                  </label>
                   <input
                     className="new__form-input"
                     onChange={this.handleChange}
-                    value={this.state.film}
+                    value={film}
                     name="film"
                   ></input>
-                  <label className="new__form-label">Notes</label>
+                  <label className="new__form-label">
+                    Notes
+                    {notesERR ? (
+                      <span style={{ color: "red" }}> *required</span>
+                    ) : null}
+                  </label>
                   <textarea
                     className="new__form-textarea"
                     onChange={this.handleChange}
-                    value={this.state.notes}
+                    value={notes}
                     name="notes"
                   ></textarea>
                 </div>
@@ -147,12 +241,16 @@ const uploadImage = async (file, entry) => {
       },
     };
 
-    const HOST = "http://localhost:";
-    const url = `${HOST}${PORT}/upload`;
+    const url = `${serverURL}/upload`;
 
     const result = await axios.post(url, formData, config);
     console.log("Result: ", result);
+    if (result.status !== 200) {
+      throw new Error(`error processing request: ${result.status}`);
+    } else {
+      this.setState({ isRedirecting: true });
+    }
   } catch (error) {
-    console.error(error);
+    alert(`submit failed: ${error.message}`);
   }
 };
