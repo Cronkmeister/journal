@@ -7,9 +7,10 @@ const PORT = process.env.PORT || 5050;
 
 require("dotenv").config();
 const knex =
-  process.env.NODE_ENV === "production"
-    ? require("knex")(require("./knexfile").production)
-    : require("knex")(require("./knexfile").development);
+  // process.env.NODE_ENV === "production"
+  //   ? require("knex")(require("./knexfile").production)
+  //   : require("knex")(require("./knexfile").development);
+  require("knex")(require("./knexfile").production);
 
 const entryRoutes = require("./routes/entriesRoute");
 
