@@ -49,6 +49,7 @@ class AddNew extends Component {
       return false;
     }
     await uploadImage(this.state.file, newEntry);
+    this.setState({ isRedirecting: true });
   }
 
   //set state for other info inputs
@@ -65,8 +66,8 @@ class AddNew extends Component {
       !this.state.location.trim() ||
       !this.state.category.trim() ||
       !this.state.camera.trim() ||
-      !this.state.film() ||
-      !this.state.textContent.trim()
+      !this.state.film.trim() ||
+      !this.state.notes.trim()
     ) {
       return false;
     }
@@ -92,7 +93,7 @@ class AddNew extends Component {
     } else this.setState({ filmERR: false });
     if (!this.state.notes.length > 0) {
       this.setState({ notesERR: true });
-    }
+    } else this.setState({ notesERR: false });
   };
 
   render() {
@@ -245,12 +246,7 @@ const uploadImage = async (file, entry) => {
 
     const result = await axios.post(url, formData, config);
     console.log("Result: ", result);
-    if (result.status !== 200) {
-      throw new Error(`error processing request: ${result.status}`);
-    } else {
-      this.setState({ isRedirecting: true });
-    }
   } catch (error) {
-    alert(`submit failed: ${error.message}`);
+    console.log(error.message);
   }
 };

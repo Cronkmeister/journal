@@ -10,7 +10,8 @@
     "migrate": "knex migrate:latest",
     "migrate:down": "knex migrate:down",
     "migrate:rollback": "knex migrate:rollback",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "migrate-prod": "knex migrate:latest --env production"
   },
   "author": "Jonny Cronk",
   "license": "ISC",
@@ -20,8 +21,9 @@
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "form-data": "^4.0.0",
-    "knex": "^1.0.4",
+    "knex": "^2.4.2",
     "multer": "^1.4.4",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql2": "^3.2.0"
   }
 }

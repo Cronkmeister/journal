@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 module.exports = {
   development: {
     client: "mysql",
@@ -10,7 +12,14 @@ module.exports = {
     },
   },
   production: {
-    client: "mysql",
-    connection: process.env.JAWSDB_URL,
+    client: "mysql2",
+    connection: {
+      host: process.env.AWS_CONNECTION_ENDPOINT,
+      port: 3306,
+      user: process.env.AWS_DB_USERNAME,
+      password: process.env.AWS_DB_PASSWORD,
+      database: "journal",
+    },
+    debug: true,
   },
 };

@@ -7,7 +7,7 @@ function Modal({ handleClose, id }) {
   let history = useHistory();
 
   function handleDelete() {
-    axios.delete(`http://localhost:5050/entries/${id}`).then((req, res) => {
+    axios.delete(`http://localhost:5050/entries/${id}`).then((res) => {
       if (res.status === 200) {
         console.log(`entry with ${id} was deleted`);
       }
